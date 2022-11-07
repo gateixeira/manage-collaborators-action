@@ -1,0 +1,69 @@
+name: 'Publish'
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          npm install
+      - run: |
+          npm run all
+  test-add:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Retrieve the admin token
+        id: github-app
+        uses: getsentry/action-github-app-token@97c9e23528286821f97fba885c1b1123284b29cc
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - uses: ./
+        with:
+          token: ${{ steps.github-app.outputs.token }}
+          users: gateixeira-ghost
+          repositories: gateixeira-demos/test1
+          role: pull
+          action: add
+
+  test-remove:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Retrieve the admin token
+        id: github-app
+        uses: getsentry/action-github-app-token@97c9e23528286821f97fba885c1b1123284b29cc
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - uses: ./
+        with:
+          token: ${{ steps.github-app.outputs.token }}
+          users: gateixeira-ghost
+          repositories: gateixeira-demos/test1
+          role:
+          action: remove
+
+  publish:
+    needs: [test-add, test-remove]
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install
+      - run: npm run build
+      - run: npm run package
+      - run: npx semantic-release

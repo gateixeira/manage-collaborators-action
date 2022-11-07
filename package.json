@@ -1,0 +1,80 @@
+{
+  "name": "manage-collaborators-action",
+  "version": "1.0.0",
+  "description": "Action to add users as collaborators of repositories",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write '**/*.ts'",
+    "format-check": "prettier --check '**/*.ts'",
+    "lint": "eslint src/**/*.ts",
+    "package": "ncc build --source-map --license licenses.txt",
+    "release": "npm run build && npm run package",
+    "test": "jest",
+    "all": "npm run build && npm run format && npm run lint && npm run package",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable",
+    "semantic-release": "semantic-release",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gateixeira/manage-collaborators-action.git"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "setup"
+  ],
+  "author": "Guilherme Teixeira (@gateixeira)",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^17.2.0",
+    "@types/node": "^16.10.5",
+    "@typescript-eslint/parser": "^4.33.0",
+    "@vercel/ncc": "^0.31.1",
+    "commitlint": "^17.2.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-github": "^4.3.2",
+    "eslint-plugin-jest": "^25.3.2",
+    "husky": "^8.0.1",
+    "jest": "^27.2.5",
+    "js-yaml": "^4.1.0",
+    "lint-staged": "^13.0.3",
+    "pinst": "^3.0.0",
+    "prettier": "2.5.1",
+    "semantic-release": "^19.0.5",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.4.4"
+  },
+  "bugs": {
+    "url": "https://github.com/gateixeira/manage-collaborators-action/issues"
+  },
+  "homepage": "https://github.com/gateixeira/manage-collaborators-action#readme",
+  "directories": {
+    "lib": "lib"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "prettier --write"
+    ],
+    "*.ts": [
+      "eslint --cache --fix"
+    ]
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  }
+}

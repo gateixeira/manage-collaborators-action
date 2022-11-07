@@ -1,0 +1,22 @@
+name: 'Your name here'
+description: 'Run this action to provide access to users for certain repositories'
+author: 'gateixeira'
+inputs:
+  users:
+    required: true
+    description: 'GitHub slug of users to provide access to'
+  repositories:
+    required: true
+    description: 'GitHub slug of respositories to provide access to'
+  action:
+    required: true
+    description: 'Action to be performed: add or remove'
+  role:
+    required: true
+    description: 'Role of the user in the repository. Only valid if action is add'
+  token:
+    required: true
+    description: 'Personal Access Token or GITHUB_TOKEN (or comma separated tokens)'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
