@@ -1,6 +1,9 @@
 name: 'Manage Collaborators'
 description: 'Run this action to provide access to users for certain repositories'
 author: 'gateixeira'
+branding:
+  icon: 'user-plus'
+  color: 'green'
 inputs:
   users:
     required: true
