@@ -30,7 +30,7 @@ jobs:
         with:
           token: ${{ steps.github-app.outputs.token }}
           users: gateixeira-ghost
-          repositories: gateixeira-demos/test1
+          repositories: gateixeira/test-manage-collaborators-action
           role: pull
           action: add
 
@@ -51,7 +51,7 @@ jobs:
         with:
           token: ${{ steps.github-app.outputs.token }}
           users: gateixeira-ghost
-          repositories: gateixeira-demos/test1
+          repositories: gateixeira/test-manage-collaborators-action
           role:
           action: remove
 
