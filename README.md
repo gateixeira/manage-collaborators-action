@@ -6,7 +6,7 @@
 
 ---
 
-This GitHub action adds and removes multiple users from multiple repositories repositories.
+This GitHub action adds and removes multiple users from multiple repositories.
 
 If a user is already part of the repository, running it again with a different `permission` will change the permission of the user.
 
