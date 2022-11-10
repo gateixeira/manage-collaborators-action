@@ -18,7 +18,7 @@ A user will be removed from the repository regardless whether the user accepted 
 
 | NAME           | DESCRIPTION                                                                                    | TYPE     | REQUIRED | DEFAULT |
 | -------------- | ---------------------------------------------------------------------------------------------- | -------- | -------- | ------- |
-| `token`        | A GitHub token with access to the target repositories                                          | `string` | `true`   | `N/A`   |
+| `token`        | A GitHub token with admin access to the target repositories                                    | `string` | `true`   | `N/A`   |
 | `users`        | Comma-separated GitHub slug of users to provide access to.                                     | `string` | `true`   | `N/A`   |
 | `repositories` | Comma-separated GitHub slug of repositories to provide access to (format <owner>/<repo_name>). | `string` | `true`   | `N/A`   |
 | `action`       | The action to perform. Add or Remove.                                                          | `string` | `true`   | `N/A`   |
@@ -33,9 +33,9 @@ Add the following snippet to an existing workflow file:
 ```yml
 - name: Run Manager Collaborators Action
   id: manager-collaborators-action
-  uses: gateixeira/manage-collaborators-action@main
+  uses: gateixeira/manage-collaborators-action@v1.0.1
   with:
-    token: ${{ secrets.GITHUB_TOKEN }}
+    token: ${{ secrets.REPO_ACCESS_TOKEN }}
     repositories: owner/repo1,owner/repo2
     users: user1,user2
     role: push
