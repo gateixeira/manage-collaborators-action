@@ -28,7 +28,7 @@ A user will be removed from the repository regardless whether the user accepted 
 
 ## Usage example
 
-Add the following snippet to an existing workflow file:
+Add the following snippet to an existing workflow file
 
 ```yml
 - name: Run Manager Collaborators Action
