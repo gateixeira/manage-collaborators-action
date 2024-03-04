@@ -34,7 +34,7 @@
     "@actions/github": "^5.1.1"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^17.2.0",
+    "@commitlint/config-conventional": "^19.0.3",
     "@types/node": "^16.10.5",
     "@typescript-eslint/parser": "^5.42.0",
     "@vercel/ncc": "^0.31.1",
